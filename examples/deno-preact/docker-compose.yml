@@ -1,0 +1,49 @@
+version: '3.7'
+
+services:
+  frontend:
+    image: ${SWARMLET_REGISTRY}/deno-preact-frontend
+    build:
+      context: ./frontend
+      args:
+        REACT_APP_API_URL: https://api.${DOMAIN}
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels:
+        - traefik.enable=true
+        - traefik.tags=traefik-public
+        - traefik.deno-preact.port=5000
+        - traefik.deno-preact.frontend.rule=Host:${DOMAIN}
+        - traefik.deno-preact.frontend.entryPoints=http,https
+        - traefik.deno-preact.frontend.passHostHeader=true
+        - traefik.deno-preact.frontend.headers.SSLRedirect=true
+        - traefik.deno-preact.frontend.headers.SSLHost=${DOMAIN}
+        - traefik.deno-preact.frontend.headers.STSIncludeSubdomains=true
+        - traefik.deno-preact.frontend.headers.STSPreload=true
+    networks:
+      - traefik-public
+
+  api:
+    image: ${SWARMLET_REGISTRY}/deno-preact-api
+    build: ./api
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels:
+        - traefik.enable=true
+        - traefik.tags=traefik-public
+        - traefik.deno-preact.port=8080
+        - traefik.deno-preact.frontend.rule=Host:api.${DOMAIN}
+        - traefik.deno-preact.frontend.entryPoints=http,https
+        - traefik.deno-preact.frontend.passHostHeader=true
+        - traefik.deno-preact.frontend.headers.SSLRedirect=true
+        - traefik.deno-preact.frontend.headers.SSLHost=api.${DOMAIN}
+        - traefik.deno-preact.frontend.headers.STSIncludeSubdomains=true
+        - traefik.deno-preact.frontend.headers.STSPreload=true
+    networks:
+      - traefik-public
+
+networks:
+  traefik-public:
+    external: true
