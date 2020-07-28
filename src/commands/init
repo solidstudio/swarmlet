@@ -92,6 +92,13 @@ init() {
     echo "$PREFIX $TRAEFIK_NETWORK network already exists"
   fi
 
+  if ! command -v cephadm &> /dev/null
+  then
+      install-cephadm
+      cephadm install cephadm ceph-common
+      cephadm bootstrap --mon-ip $NODE_IP --initial-dashboard-user ${SWARMLET_USERNAME/ /} --initial-dashboard-password $SWARMLET_PASSWORD
+  fi
+
   echo "$PREFIX Creating volumes"
   if [[ ! "$(docker volume ls | grep "$GIT_DATA")" ]]; then
     docker volume create \
