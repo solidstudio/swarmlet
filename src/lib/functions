@@ -135,7 +135,7 @@ install-zsh() {
 
 install-cephadm() {
   echo "$PREFIX Installing cephadm"
-  curl -fsSL "https://github.com/ceph/ceph/raw/octopus/src/cephadm/cephadm-$(uname -s)-$(uname -m)" -o /usr/local/bin/cephadm
+  curl -fsSL "https://github.com/ceph/ceph/raw/octopus/src/cephadm/cephadm" -o /usr/local/bin/cephadm
   chmod +x /usr/local/bin/cephadm
 }
 

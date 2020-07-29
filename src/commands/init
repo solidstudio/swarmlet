@@ -95,8 +95,8 @@ init() {
   if ! command -v cephadm &> /dev/null
   then
       install-cephadm
-      cephadm install cephadm ceph-common
-      cephadm bootstrap --mon-ip $NODE_IP --initial-dashboard-user ${SWARMLET_USERNAME/ /} --initial-dashboard-password $SWARMLET_PASSWORD
+      mkdir /etc/ceph
+      cephadm bootstrap --mon-ip $NODE_IP --initial-dashboard-user ${SWARMLET_USERNAME/ /} --initial-dashboard-password $SWARMLET_PASSWORD --skip-dashboard
   fi
 
   echo "$PREFIX Creating volumes"
