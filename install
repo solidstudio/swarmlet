@@ -5,7 +5,8 @@ FPREFIX="=====>"
 PREFIX="----->"
 INDENT="      "
 
-SWARMLET_REPO="https://github.com/swarmlet/swarmlet.git"
+#SWARMLET_REPO="https://github.com/swarmlet/swarmlet.git"
+SWARMLET_REPO=${VARIABLE:="https://github.com/swarmlet/swarmlet.git"}
 SWARMLET_INSTALL_ROOT="/opt/swarmlet"
 
 # Check if user is root
