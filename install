@@ -6,7 +6,6 @@ PREFIX="----->"
 INDENT="      "
 
 #SWARMLET_REPO="https://github.com/swarmlet/swarmlet.git"
-SWARMLET_REPO=${VARIABLE:="https://github.com/swarmlet/swarmlet.git"}
 SWARMLET_INSTALL_ROOT="/opt/swarmlet"
 
 # Check if user is root
@@ -30,6 +29,7 @@ fi
 # Define default environment variables
 ENV_CONFIRMED="true"
 declare -A DEFAULT_OPTS=(
+  [SWARMLET_REPO]="https://github.com/swarmlet/swarmlet.git"
   [INSTALLATION_TYPE]=interactive                  # (default interactive, options: interactive|noninteractive) Use CLI wizard to setup Swarmlet
   [INSTALL_BRANCH]=master                          # (default master) The default branch to install
   [SWARMLET_USERNAME]=$USER                        # (default $USER) Used for authentication with the registry and web services / dashboards
