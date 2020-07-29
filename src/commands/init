@@ -96,7 +96,7 @@ init() {
   then
       install-cephadm
       mkdir /etc/ceph
-      cephadm bootstrap --mon-ip $NODE_IP --initial-dashboard-user ${SWARMLET_USERNAME/ /} --initial-dashboard-password $SWARMLET_PASSWORD --skip-dashboard
+      cephadm bootstrap --mon-ip $NODE_IP --initial-dashboard-user ${SWARMLET_USERNAME/ /} --initial-dashboard-password $SWARMLET_PASSWORD
   fi
 
   echo "$PREFIX Creating volumes"
