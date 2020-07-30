@@ -150,6 +150,8 @@ section-ca-config() {
 
   EXIT_STATUS=$?
   [[ "$EXIT_STATUS" -eq "1" ]] && abort-installation
+  CA_PROD="https://acme-v02.api.letsencrypt.org/directory"
+  CA_TEST="https://acme-staging-v02.api.letsencrypt.org/directory"
   ($CA_SERVER) && CA_SERVER=$CA_PROD || CA_SERVER=$CA_TEST
   echo "$CA_SERVER"
 }
