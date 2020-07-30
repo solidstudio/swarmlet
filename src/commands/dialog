@@ -137,8 +137,8 @@ section-ca-config() {
   MESSAGE="\nUse prod CA?"
 
   CA_SERVER_OPTIONS=(
-    true
-    false
+    true "Use prod CA"
+    false "Use staging CA"
   )
 
   CA_SERVER=$(whiptail \
