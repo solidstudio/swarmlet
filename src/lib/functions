@@ -135,8 +135,11 @@ install-zsh() {
 
 install-cephadm() {
   echo "$PREFIX Installing cephadm"
-  curl -fsSL "https://github.com/ceph/ceph/raw/octopus/src/cephadm/cephadm" -o /usr/local/bin/cephadm
-  chmod +x /usr/local/bin/cephadm
+  curl --silent --remote-name --location https://github.com/ceph/ceph/raw/octopus/src/cephadm/cephadm
+  chmod +x cephadm
+  ./cephadm add-repo --release octopus
+  ./cephadm install
+  cephadm install ceph-common
 }
 
 abort-installation() {
