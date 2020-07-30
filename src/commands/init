@@ -101,9 +101,7 @@ init() {
     install-cephadm
     cephadm bootstrap --mon-ip $NODE_IP --initial-dashboard-user ${SWARMLET_USERNAME/ /} --initial-dashboard-password $SWARMLET_PASSWORD
     ceph orch apply osd --all-available-devices
-    ceph osd pool create cephfs_data
-    ceph osd pool create cephfs_metadata
-    ceph fs new cephfs cephfs_metadata cephfs_data
+    ceph fs volume create data
   fi
 
   echo "$PREFIX Creating volumes"
