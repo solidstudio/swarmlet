@@ -132,6 +132,50 @@ Access the Traefik dashboard at https://traefik.yourdomain.com for example."
   echo "$ROOT_DOMAIN"
 }
 
+section-ca-config() {
+  SECTION_TITLE="CA Config"
+  MESSAGE="\nUse prod CA?"
+
+  CA_SERVER_OPTIONS=(
+    true "Prod"
+    false "Test"
+  )
+
+  CA_SERVER=$(whiptail \
+    --title "$SECTION_TITLE" \
+    --menu "$MESSAGE" \
+    "$TTY_ROWS" "$TTY_COLS" "$((${#CA_SERVER_OPTIONS[@]} / 2))" \
+    "${CA_SERVER_OPTIONS[@]}" \
+    3>&1 1>&2 2>&3)
+
+  EXIT_STATUS=$?
+  [[ "$EXIT_STATUS" -eq "1" ]] && abort-installation
+  ($CA_SERVER) && CA_SERVER=$CA_PROD || CA_SERVER=$CA_TEST
+  echo "$CA_SERVER"
+}
+
+section-install-ceph() {
+  SECTION_TITLE="Optional: Install Ceph"
+  MESSAGE="\nInstall Ceph?\n\n\
+Ceph provides persistent storage to your containers running on docker swarm."
+
+  INSTALL_CEPH_OPTIONS=(
+    true "Install Ceph"
+    false "Skip this step"
+  )
+
+  INSTALL_CEPH=$(whiptail \
+    --title "$SECTION_TITLE" \
+    --menu "$MESSAGE" \
+    "$TTY_ROWS" "$TTY_COLS" "$((${#INSTALL_CEPH_OPTIONS[@]} / 2))" \
+    "${INSTALL_CEPH_OPTIONS[@]}" \
+    3>&1 1>&2 2>&3)
+
+  EXIT_STATUS=$?
+  [[ "$EXIT_STATUS" -eq "1" ]] && abort-installation
+  echo "$INSTALL_CEPH"
+}
+
 # section-installation-mode() {
 #   SECTION_TITLE="Installation mode"
 #   MESSAGE="\nChoose the installation mode:"

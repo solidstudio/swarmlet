@@ -7,6 +7,8 @@ INDENT="      "
 
 #SWARMLET_REPO="https://github.com/swarmlet/swarmlet.git"
 SWARMLET_INSTALL_ROOT="/opt/swarmlet"
+CA_PROD="https://acme-v02.api.letsencrypt.org/directory"
+CA_TEST="https://acme-staging-v02.api.letsencrypt.org/directory"
 
 # Check if user is root
 if [[ $EUID -ne 0 ]]; then
@@ -37,9 +39,11 @@ declare -A DEFAULT_OPTS=(
   [SSH_AUTHORIZED_KEYS]=$HOME/.ssh/authorized_keys # (default root) The authorized SSH keys for git deployments
   [NEW_HOSTNAME]=$HOSTNAME                         # (default $HOSTNAME) Optional: set a new hostname
   [ROOT_DOMAIN]=""                                 # (default undefined) The domain to use for deployment of included services
+  [INSTALL_CEPH]=true                              # (default true) Install ceph for persistent storage
   [CREATE_SWAP]=false                              # (default false) Allocate 1GB of swap space
   [INSTALL_ZSH]=false                              # (default false) Install 'Oh My Zsh'
   [INSTALL_MODULES]=""                             # (default undefined, options: matomo|swarmpit|swarmprom|portainer) Seperate by space and wrap in quotes to install multiple modules
+  [CA_SERVER]=$CA_PROD                             # (default prod, options: CA_PROD|CA_TEST
   # > TODO:
   # [DEBUG]=                       # (default undefined) Run installation in debug mode
 )
