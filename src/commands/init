@@ -22,7 +22,7 @@ init() {
       NEW_HOSTNAME=$(swarmlet dialog set-hostname)
       ROOT_DOMAIN=$(swarmlet dialog domain-config)
       CA_SERVER=$(swarmlet dialog ca-config)
-      BASE_VOL_PATH=$(swarmlet dialog base-vol-path)
+      BASE_VOL_PATH=$(swarmlet dialog section-base-path)
       INSTALL_MODULES=$(swarmlet dialog install-modules)
       CREATE_SWAP=$(swarmlet dialog add-swap)
       INSTALL_ZSH=$(swarmlet dialog install-zsh)
