@@ -43,6 +43,7 @@ declare -A DEFAULT_OPTS=(
   [INSTALL_ZSH]=false                              # (default false) Install 'Oh My Zsh'
   [INSTALL_MODULES]=""                             # (default undefined, options: matomo|swarmpit|swarmprom|portainer) Seperate by space and wrap in quotes to install multiple modules
   [CA_SERVER]=$CA_PROD                             # (default prod, options: CA_PROD|CA_TEST
+  [BASE_VOL_PATH]=""                               # Base path for docker volumes useful for external storage NFS etc
   # > TODO:
   # [DEBUG]=                       # (default undefined) Run installation in debug mode
 )

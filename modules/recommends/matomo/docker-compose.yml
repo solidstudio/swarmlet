@@ -4,7 +4,7 @@ services:
   db:
     image: mariadb:10.2
     volumes:
-      - db-data:/var/lib/mysql
+      - ${BASE_VOL_PATH}db-data:/var/lib/mysql
     networks:
       - matomo-network      
     environment:
@@ -23,7 +23,7 @@ services:
   geoip-updater:
     image: crazymax/geoip-updater:latest
     volumes:
-      - geoip-data:/data
+      - ${BASE_VOL_PATH}geoip-data:/data
     networks:
       - matomo-network
     env_file:
@@ -39,8 +39,8 @@ services:
       - "./matomo.env"
     restart: always
     volumes:
-      - matomo-data:/data
-      - geoip-data:/data/geoip
+      - ${BASE_VOL_PATH}matomo-data:/data
+      - ${BASE_VOL_PATH}geoip-data:/data/geoip
     networks:
       - matomo-network
       - traefik-public
@@ -71,8 +71,8 @@ services:
     depends_on:
       - matomo
     volumes:
-      - matomo-data:/data
-      - geoip-data:/data/geoip
+      - ${BASE_VOL_PATH}matomo-data:/data
+      - ${BASE_VOL_PATH}geoip-data:/data/geoip
     networks:
       - matomo-network
     env_file:

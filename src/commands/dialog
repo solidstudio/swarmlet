@@ -156,6 +156,22 @@ section-ca-config() {
   echo "$CA_SERVER"
 }
 
+section-base-path() {
+  SECTION_TITLE="Volume configuration - base path"
+  MESSAGE="\nOptional: Enter your base path.\nDefault: $BASE_VOL_PATH"
+
+  BASE_VOL_PATH=$(whiptail \
+    --title "$SECTION_TITLE" \
+    --inputbox "$MESSAGE" \
+    "$TTY_ROWS" "$TTY_COLS" \
+    "${BASE_VOL_PATH:-$BASE_VOL_PATH}" \
+    3>&1 1>&2 2>&3)
+
+  EXIT_STATUS=$?
+  [[ "$EXIT_STATUS" -eq "1" ]] && abort-installation
+  echo "$BASE_VOL_PATH"
+}
+
 # section-installation-mode() {
 #   SECTION_TITLE="Installation mode"
 #   MESSAGE="\nChoose the installation mode:"

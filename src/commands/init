@@ -22,6 +22,7 @@ init() {
       NEW_HOSTNAME=$(swarmlet dialog set-hostname)
       ROOT_DOMAIN=$(swarmlet dialog domain-config)
       CA_SERVER=$(swarmlet dialog ca-config)
+      BASE_VOL_PATH=$(swarmlet dialog base-vol-path)
       INSTALL_MODULES=$(swarmlet dialog install-modules)
       CREATE_SWAP=$(swarmlet dialog add-swap)
       INSTALL_ZSH=$(swarmlet dialog install-zsh)
@@ -75,6 +76,7 @@ init() {
 		NEW_HOSTNAME="${NEW_HOSTNAME/ /}"
 		ROOT_DOMAIN="$ROOT_DOMAIN"
     CA_SERVER="$CA_SERVER"
+    BASE_VOL_PATH="$BASE_VOL_PATH"
 		INSTALL_MODULES=$INSTALL_MODULES
 		CREATE_SWAP="$CREATE_SWAP"
 		INSTALL_ZSH="$INSTALL_ZSH"
@@ -95,13 +97,13 @@ init() {
   fi
 
   echo "$PREFIX Creating volumes"
-  if [[ ! "$(docker volume ls | grep "$GIT_DATA")" ]]; then
+  if [[ ! "$(docker volume ls | grep "$BASE_VOL_PATH$GIT_DATA/core/deployer")" ]]; then
     docker volume create \
       --driver "local" \
       -o o=bind \
       -o type=none \
       -o device="$GIT_USER_ROOT" \
-      "$GIT_DATA"
+      "$BASE_VOL_PATH$GIT_DATA/core/deployer"
   fi
 
   echo "$PREFIX Installing modules"
