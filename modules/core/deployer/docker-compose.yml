@@ -31,10 +31,6 @@ networks:
   swarmlet-network:
     external: true
 
-volumes:
-  git-data:
-    external: true
-
 secrets:
   swarmlet-user-secrets:
     external: true

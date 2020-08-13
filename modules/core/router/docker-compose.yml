@@ -133,8 +133,6 @@ services:
   #       delay: 60s
 
 volumes:
-  consul-data-leader:
-  consul-data-replica:
   traefik-certs:
     external: true
 

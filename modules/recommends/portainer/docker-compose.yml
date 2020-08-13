@@ -46,9 +46,6 @@ services:
       placement:
         constraints: [node.role == manager]
 
-volumes:
-  portainer-data:
-
 networks:
   portainer-network:
   traefik-public:

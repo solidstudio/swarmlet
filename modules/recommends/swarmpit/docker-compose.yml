@@ -76,6 +76,3 @@ networks:
   traefik-public:
     external: true
 
-volumes:
-  db-data:
-    driver: local

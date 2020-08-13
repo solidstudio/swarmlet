@@ -85,11 +85,6 @@ services:
       disable: true
     restart: always
 
-volumes:
-  db-data:
-  matomo-data:
-  geoip-data:
-
 networks:
   matomo-network:
   traefik-public:
