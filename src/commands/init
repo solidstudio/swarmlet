@@ -96,15 +96,15 @@ init() {
     echo "$PREFIX $TRAEFIK_NETWORK network already exists"
   fi
 
-  echo "$PREFIX Creating volumes"
-  if [[ ! "$(docker volume ls | grep "$BASE_VOL_PATH$GIT_DATA/core/deployer")" ]]; then
-    docker volume create \
-      --driver "local" \
-      -o o=bind \
-      -o type=none \
-      -o device="$GIT_USER_ROOT" \
-      "$BASE_VOL_PATH$GIT_DATA/core/deployer"
-  fi
+  # echo "$PREFIX Creating volumes"
+  # if [[ ! "$(docker volume ls | grep "$BASE_VOL_PATH/$GIT_DATA/core/deployer")" ]]; then
+  #   docker volume create \
+  #     --driver "local" \
+  #     -o o=bind \
+  #     -o type=none \
+  #     -o device="$GIT_USER_ROOT" \
+  #     "$BASE_VOL_PATH/$GIT_DATA/core/deployer"
+  # fi
 
   echo "$PREFIX Installing modules"
   SWARMLET_MODULES=()
