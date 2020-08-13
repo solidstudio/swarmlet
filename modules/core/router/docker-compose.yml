@@ -5,7 +5,7 @@ services:
     image: consul
     command: agent -server -client=0.0.0.0 -bootstrap -ui
     volumes:
-      - ${BASE_VOL_PATH}consul-data-leader:/consul/data
+      - ${BASE_VOL_PATH}/consul-data-leader:/consul/data
     environment:
       - CONSUL_BIND_INTERFACE=eth0
       - 'CONSUL_LOCAL_CONFIG={"leave_on_terminate": true}'
@@ -30,7 +30,7 @@ services:
     image: consul
     command: agent -server -client=0.0.0.0 -retry-join="consul-leader"
     volumes:
-      - ${BASE_VOL_PATH}consul-data-replica:/consul/data
+      - ${BASE_VOL_PATH}/consul-data-replica:/consul/data
     environment:
       - CONSUL_BIND_INTERFACE=eth0
       - 'CONSUL_LOCAL_CONFIG={"leave_on_terminate": true}'
