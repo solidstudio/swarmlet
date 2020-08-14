@@ -50,6 +50,7 @@ stack-deploy() {
 
   echo "$PREFIX Deploying $STACK_NAME"
   echo "$PREFIX Base path $BASE_VOL_PATH"
+  echo "$PREFIX Domain $ROOT_DOMAIN"
 
   if [[ $STACK_NAME == "deployer" ]]; then
     docker stack deploy --with-registry-auth --compose-file "$COMPOSE_FILE" "$STACK_NAME"

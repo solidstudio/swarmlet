@@ -164,7 +164,7 @@ section-base-path() {
     --title "$SECTION_TITLE" \
     --inputbox "$MESSAGE" \
     "$TTY_ROWS" "$TTY_COLS" \
-    "${BASE_VOL_PATH:-$BASE_VOL_PATH}" \
+    "${BASE_VOL_PATH:-}" \
     3>&1 1>&2 2>&3)
 
   EXIT_STATUS=$?
