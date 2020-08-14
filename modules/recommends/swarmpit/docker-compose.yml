@@ -36,7 +36,7 @@ services:
   db:
     image: couchdb:2.3.0
     volumes:
-      - ${BASE_VOL_PATH}/db-data:/opt/couchdb/data
+      - ${VOL_PATH}/db-data:/opt/couchdb/data
     networks:
       - swarmpit-net
     deploy:

@@ -11,7 +11,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /opt/swarmlet:/opt/swarmlet
-      - ${BASE_VOL_PATH}/git-data:/home/git
+      - ${VOL_PATH}/git-data:/home/git
     secrets:
       - swarmlet-user-secrets
     configs:

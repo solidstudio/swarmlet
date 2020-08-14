@@ -11,7 +11,7 @@ services:
       - REGISTRY_AUTH_HTPASSWD_PATH=/run/secrets/security.htpasswd
       - REGISTRY_STORAGE_DELETE_ENABLED=true
     volumes:
-      - ${BASE_VOL_PATH}/registry-data:/var/lib/registry
+      - ${VOL_PATH}/registry-data:/var/lib/registry
     networks:
       - swarmlet-network
       - traefik-public
